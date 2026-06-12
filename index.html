@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Wambui Shadrack & Associates Advocates | Premium Legal Counsel in Nairobi</title>
+<meta name="description" content="Wambui Shadrack & Associates Advocates — professional, efficient and personalized legal services across constitutional, conveyancing, banking and dispute resolution practice in Kenya." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0b1a2b;--navy-2:#13273f;--gold:#fbbf24;--gold-2:#f59e0b;--bg:#f8fafc;--text:#334155;--white:#fff;--muted:#64748b;--line:#e2e8f0;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:#fff;line-height:1.6}
+  h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;color:var(--navy);font-weight:700;line-height:1.2}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .container{max-width:1200px;margin:0 auto;padding:0 1rem}
+  .btn{display:inline-block;padding:.85rem 1.5rem;font-weight:600;border-radius:6px;cursor:pointer;border:none;font-size:.95rem;transition:all .2s}
+  .btn-gold{background:var(--gold);color:var(--navy)}.btn-gold:hover{background:var(--gold-2)}
+  .btn-navy{background:var(--navy);color:#fff}.btn-navy:hover{background:var(--navy-2)}
+  .btn-outline-white{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}.btn-outline-white:hover{background:rgba(255,255,255,.1)}
+  .btn-outline-navy{background:transparent;color:var(--navy);border:2px solid var(--navy)}.btn-outline-navy:hover{background:var(--navy);color:#fff}
+  .eyebrow{color:var(--gold-2);letter-spacing:.3em;font-size:.7rem;text-transform:uppercase;font-weight:600}
+  .section{padding:5rem 0}
+  .center{text-align:center}
+  .grid{display:grid;gap:1.5rem}
+  @media(min-width:768px){.md-2{grid-template-columns:repeat(2,1fr)}.md-3{grid-template-columns:repeat(3,1fr)}.md-4{grid-template-columns:repeat(4,1fr)}}
+  /* Top bar */
+  .topbar{background:var(--navy);color:#e2e8f0;font-size:.75rem;padding:.5rem 0}
+  .topbar .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem 1.5rem}
+  .topbar span{margin-right:1rem}
+  /* Header */
+  .header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:40}
+  .header .row{display:flex;align-items:center;justify-content:space-between;padding:1rem 0;gap:1.5rem}
+  .logo{display:flex;align-items:center;gap:.75rem}
+  .logo-mark{width:40px;height:40px;background:var(--navy);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;border-radius:4px}
+  .logo-title{font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);font-size:1.1rem;line-height:1.1}
+  .logo-sub{font-size:.65rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
+  nav.main{display:none;gap:1.75rem;font-size:.9rem;font-weight:500;color:#475569}
+  nav.main a:hover{color:var(--navy)}
+  @media(min-width:1024px){nav.main{display:flex}}
+  /* Hero */
+  .hero{position:relative;overflow:hidden;isolation:isolate;background:#0b1a2b;color:#fff;padding:6rem 0}
+  .hero .slide{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;opacity:0;animation:heroSlideshow 24s infinite}
+  .hero .slide:nth-child(1){animation-delay:0s;opacity:1}
+  .hero .slide:nth-child(2){animation-delay:6s}
+  .hero .slide:nth-child(3){animation-delay:12s}
+  .hero .slide:nth-child(4){animation-delay:18s}
+  .hero .overlay{position:absolute;inset:0;z-index:-1;background:linear-gradient(135deg,rgba(11,26,43,.92),rgba(11,26,43,.82),rgba(11,26,43,.92))}
+  @keyframes heroSlideshow{0%,20%{opacity:1;transform:scale(1.08)}25%,95%{opacity:0}100%{opacity:1;transform:scale(1)}}
+  .hero h1{color:#fff;font-size:2.5rem;margin:1rem 0 1.5rem;text-shadow:0 4px 24px rgba(0,0,0,.4)}
+  @media(min-width:1024px){.hero h1{font-size:3.75rem}}
+  .hero p{color:#e2e8f0;font-size:1.1rem;max-width:640px;margin-bottom:2rem}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:.75rem}
+  .hero .eyebrow{color:var(--gold)}
+  /* Stats */
+  .stats{background:var(--navy-2);color:#fff;padding:3rem 0;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1)}
+  .stats .grid{grid-template-columns:repeat(2,1fr);text-align:center}
+  @media(min-width:768px){.stats .grid{grid-template-columns:repeat(4,1fr)}}
+  .stat-n{font-size:2.25rem;font-weight:700;color:var(--gold)}
+  .stat-l{font-size:.9rem;color:#cbd5e1;margin-top:.25rem}
+  /* About */
+  .about{background:#f8fafc}
+  .about h2,.practice h2,.why h2,.team h2,.excellence h2{font-size:2rem;margin-top:.5rem}
+  @media(min-width:1024px){.about h2,.practice h2,.why h2,.team h2,.excellence h2{font-size:2.5rem}}
+  .lead{max-width:720px;margin:0 auto;color:var(--muted)}
+  .card{background:#fff;padding:2rem;border-top:4px solid var(--gold);box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .card h3{font-size:1.25rem;margin-bottom:.75rem}
+  /* Practice */
+  .practice-card{padding:2rem;background:#f8fafc;border-left:4px solid var(--gold);transition:all .3s}
+  .practice-card:hover{background:var(--navy);color:#e2e8f0}
+  .practice-card:hover h3{color:var(--gold)}
+  .practice-card h3{font-size:1.25rem;margin-bottom:.75rem}
+  /* Why */
+  .why-card{padding:1.5rem;background:#f8fafc;border:1px solid #f1f5f9;border-radius:6px;text-align:center;transition:box-shadow .2s}
+  .why-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.08)}
+  .why-card h3{font-size:1.1rem;margin-bottom:.75rem}
+  .why-card p{font-size:.9rem}
+  /* Team */
+  .team{background:#f8fafc}
+  .team-grid{display:grid;gap:2rem;max-width:1000px;margin:3rem auto 0}
+  @media(min-width:768px){.team-grid{grid-template-columns:repeat(2,1fr)}}
+  .team-card{background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.08);overflow:hidden}
+  .team-img{aspect-ratio:4/5;background:#e2e8f0;overflow:hidden}
+  .team-img img{width:100%;height:100%;object-fit:cover;object-position:top}
+  .team-body{padding:1.5rem;border-top:4px solid var(--gold)}
+  .team-body h3{font-size:1.25rem}
+  .team-role{color:var(--gold-2);font-weight:600;font-size:.9rem;margin-top:.25rem}
+  .team-creds{font-size:.75rem;color:var(--muted);margin-top:.25rem}
+  .team-bio{margin-top:1rem;font-size:.9rem}
+  /* Excellence */
+  .excellence{background:#f8fafc}
+  .excellence-grid{display:grid;gap:2.5rem;align-items:center}
+  @media(min-width:1024px){.excellence-grid{grid-template-columns:repeat(2,1fr)}}
+  .excellence img{border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.15);border:1px solid var(--line)}
+  /* Portal */
+  .portal{background:var(--gold);padding:3.5rem 0}
+  .portal .row{display:flex;flex-direction:column;gap:1.5rem;align-items:center;justify-content:space-between;text-align:center}
+  @media(min-width:768px){.portal .row{flex-direction:row;text-align:left}}
+  .portal h3{font-size:1.5rem}
+  .portal-actions{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
+  /* Contact */
+  .contact{background:var(--navy);color:#fff;padding:5rem 0}
+  .contact h2{color:#fff}.contact .eyebrow{color:var(--gold)}
+  .contact .lead{color:#cbd5e1}
+  .contact-grid{display:grid;gap:2.5rem;margin-top:3rem}
+  @media(min-width:1024px){.contact-grid{grid-template-columns:repeat(2,1fr)}}
+  .contact-item{display:flex;gap:1rem;padding:1.25rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:6px;margin-bottom:1rem}
+  .contact-icon{width:44px;height:44px;border-radius:4px;background:var(--gold);color:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem}
+  .contact-item h4{color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;font-size:.95rem}
+  .contact-item p{color:#e2e8f0;font-size:.875rem;margin-top:.25rem;white-space:pre-line}
+  .form{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:2rem}
+  .form h3{color:var(--gold);font-size:1.25rem;margin-bottom:1.25rem}
+  .form input,.form textarea{width:100%;background:transparent;border:1px solid rgba(255,255,255,.2);border-radius:4px;padding:.85rem 1rem;color:#fff;font-family:inherit;font-size:.95rem;margin-bottom:1rem;outline:none}
+  .form input::placeholder,.form textarea::placeholder{color:#94a3b8}
+  .form input:focus,.form textarea:focus{border-color:var(--gold)}
+  .form button{width:100%}
+  .map{margin-top:3rem;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.1);box-shadow:0 10px 30px rgba(0,0,0,.3)}
+  .map iframe{width:100%;height:380px;border:0;filter:invert(90%) hue-rotate(180deg)}
+  /* Footer */
+  footer{background:#060f1a;color:#94a3b8;padding:2.5rem 0;font-size:.875rem}
+  footer .row{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:1.5rem;text-align:center}
+  @media(min-width:768px){footer .row{flex-direction:row;text-align:left}}
+  .social{display:flex;gap:.75rem}
+  .social a{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:#cbd5e1;transition:all .2s;font-size:.85rem}
+  .social a:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container row">
+    <div><span>📞 +254 (0) 700 260 086 / +254 (0) 784 260 086</span><span>📧 shadrackwambui@gmail.com</span></div>
+    <div><span>📍 Bruce House, Standard Street, Nairobi</span><span>🌐 www.shadrackwambui.com</span></div>
+  </div>
+</div>
+
+<header class="header">
+  <div class="container row">
+    <a href="#" class="logo">
+      <div class="logo-mark">WS</div>
+      <div><div class="logo-title">Wambui Shadrack</div><div class="logo-sub">& Associates Advocates</div></div>
+    </a>
+    <nav class="main">
+      <a href="#home">Home</a><a href="#about">About Our Firm</a><a href="#practice">Practice Areas</a><a href="#team">Our Team</a><a href="#contact">Contact Us</a>
+    </nav>
+    <a href="job.html" class="btn btn-gold">🔒 Client Portal →</a>
+  </div>
+</header>
+
+<section id="home" class="hero">
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=2000&q=70')"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1589994965851-a8f479c573a9?auto=format&fit=crop&w=2000&q=70')"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=2000&q=70')"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=2000&q=70')"></div>
+  <div class="overlay"></div>
+  <div class="container">
+    <span class="eyebrow">Est. 2019 · Nairobi, Kenya</span>
+    <h1>Wambui Shadrack & Associates Advocates</h1>
+    <p>For personalized legal services .</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-gold">Book a Legal Consultation</a>
+      <a href="#practice" class="btn btn-outline-white">Explore Our Practice Areas</a>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="container">
+    <div class="grid">
+      <div><div class="stat-n">500+</div><div class="stat-l">Cases Resolved</div></div>
+      <div><div class="stat-n">6+</div><div class="stat-l">Years of Practice</div></div>
+      <div><div class="stat-n">98%</div><div class="stat-l">Client Satisfaction</div></div>
+      <div><div class="stat-n">50+</div><div class="stat-l">Corporate Clients</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section about">
+  <div class="container">
+    <div class="center">
+      <span class="eyebrow">About</span>
+      <h2>About Our Firm</h2>
+      <p class="lead" style="margin-top:1rem">Established in 2019, Wambui Shadrack & Associates Advocates has built a prestigious and highly diverse client base across corporate and private legal fields.</p>
+    </div>
+    <div class="grid md-3" style="margin-top:3rem">
+      <div class="card"><h3>A. Our Vision</h3><p>To be a leading business advisory firm in Africa.</p></div>
+      <div class="card"><h3>B. Mission Statement</h3><p>To render professional, efficient, and personalized legal services to our Clients.</p></div>
+      <div class="card"><h3>C. Our Mantra</h3><p>To serve professionally and efficiently; all benchmarked by high standards of integrity.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="practice" class="section practice">
+  <div class="container">
+    <div class="center">
+      <span class="eyebrow">Expertise</span>
+      <h2>Practice Areas</h2>
+      <p class="lead" style="margin-top:1rem">Comprehensive legal counsel and elite dispute resolution across specialized industry divisions.</p>
+    </div>
+    <div class="grid md-2" style="margin-top:3rem">
+      <div class="practice-card"><h3>Constitutional and Electoral Law</h3><p>Our legal team effectively advises on the interpretation and application of Constitutional and Administrative law, actively representing clients pursuing constitutional claims or defending against statutory challenges.</p></div>
+      <div class="practice-card"><h3>Conveyancing and Property Law</h3><p>We handle complex real estate development projects — residential/commercial sales, leasing, acquisition, and structuring project development financing options.</p></div>
+      <div class="practice-card"><h3>Banking, Securities & Finance Law</h3><p>Designing complex operational instruments, loan agreements, and security documents; pre-disbursement advice; regulatory compliance for local and international financial organizations.</p></div>
+      <div class="practice-card"><h3>Arbitration, Dispute Resolution & Litigation</h3><p>Representation across class actions, labor disputes, insolvency, environmental claims, and IP — complemented by mediation strategies that protect long-term business relationships.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section why">
+  <div class="container">
+    <div class="center">
+      <span class="eyebrow">Why Us</span>
+      <h2>Why Clients Trust Us</h2>
+      <p class="lead" style="margin-top:1rem">We combine deep legal expertise with a client-first philosophy to deliver results that matter.</p>
+    </div>
+    <div class="grid md-4" style="margin-top:3rem">
+      <div class="why-card"><h3>Personalized Attention</h3><p>Every case receives dedicated, one-on-one advocacy tailored to your unique legal needs and objectives.</p></div>
+      <div class="why-card"><h3>Proven Track Record</h3><p>A consistent history of successful resolutions across constitutional, corporate, and complex dispute matters.</p></div>
+      <div class="why-card"><h3>Local & Global Reach</h3><p>Deep Kenyan legal expertise combined with international best practices and professional networks.</p></div>
+      <div class="why-card"><h3>Transparent Communication</h3><p>Clear, timely updates and honest counsel at every stage of your legal journey.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="team" class="section team">
+  <div class="container">
+    <div class="center">
+      <span class="eyebrow">Our Team</span>
+      <h2>Our Legal Counsel</h2>
+      <p class="lead" style="margin-top:1rem">A highly trained resource base carefully selected for exceptional industry exposure and professional expertise.</p>
+    </div>
+    <div class="team-grid">
+      <article class="team-card">
+        <div class="team-img"><img src="https://id-preview--1cd95277-684f-400e-a30f-1c56c758bb79.lovable.app/__l5e/assets-v1/cb881504-54cc-4ebc-8de2-13aa0dcf5c8f/shadrack.jpg" alt="Shadrack Kinyanjui Wambui" /></div>
+        <div class="team-body">
+          <h3>Shadrack Kinyanjui Wambui</h3>
+          <p class="team-role">Founder & Managing Partner</p>
+          <p class="team-creds">LLB Hons. (C.U.E.A) | Dip Legal Studies (KSL)</p>
+          <p class="team-bio">Mr. Wambui is a practicing Advocate of the High Court of Kenya, a lecturer in C.U.E.A, and founder/Chair of Sheria Mtaani Na Shadrack Wambui (NGO). He specializes in public law, corporate governance, constitutionalism, family litigation, and environmental frameworks.</p>
+        </div>
+      </article>
+      <article class="team-card">
+        <div class="team-img"><img src="https://id-preview--1cd95277-684f-400e-a30f-1c56c758bb79.lovable.app/__l5e/assets-v1/4b1efaa9-a6de-4723-9333-2133f65d4382/jeff.jpg" alt="Muthiora Jeff Kang'ethe" /></div>
+        <div class="team-body">
+          <h3>Muthiora Jeff Kang'ethe</h3>
+          <p class="team-role">Associate</p>
+          <p class="team-role">Advocate of the High Court of Kenya</p>
+          <p class="team-creds">LLB Hons. (C.U.E.A) | Dip Legal Studies (KSL)</p>
+          <p class="team-bio">An elite practicing legal consultant with technical insights into commercial practice. Mr. Jeff leads comprehensive enterprise portfolio audits and corporate advisory services within the firm's ecosystem.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section excellence">
+  <div class="container">
+    <div class="excellence-grid">
+      <div><img src="https://id-preview--1cd95277-684f-400e-a30f-1c56c758bb79.lovable.app/__l5e/assets-v1/d25c463a-da73-41e8-9ad9-9503584a7217/office.jpg" alt="Premium Law Office in Nairobi" /></div>
+      <div>
+        <span class="eyebrow">Excellence</span>
+        <h2>A Firm Built on Integrity & Results</h2>
+        <p style="margin-top:1rem">From our headquarters at Bruce House in the heart of Nairobi, we deliver world-class legal counsel to individuals, SMEs, and multinational corporations. Our modern approach blends time-honored legal traditions with cutting-edge corporate strategy.</p>
+        <p style="margin-top:.75rem">Whether you are navigating a complex constitutional matter, structuring a major property deal, or resolving a high-stakes dispute, our team is committed to protecting your interests with precision and professionalism.</p>
+        <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.75rem">
+          <a href="#contact" class="btn btn-navy">Schedule a Consultation</a>
+          <a href="#practice" class="btn btn-outline-navy">View Practice Areas</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="portal" class="portal">
+  <div class="container row">
+    <div>
+      <h3>Client & Staff Portal Access</h3>
+      <p style="color:rgba(11,26,43,.8);margin-top:.25rem">Securely view case files, invoices, and confidential communications.</p>
+    </div>
+    <div class="portal-actions">
+      <a href="job.html" class="btn btn-navy">🔒 Client Login →</a>
+      <a href="job.html" class="btn btn-outline-navy">Staff Access</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="center">
+      <span class="eyebrow">Get in Touch</span>
+      <h2>Contact Us</h2>
+      <p class="lead" style="margin-top:1rem">Reach out for a confidential consultation with our advocates.</p>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-item"><div class="contact-icon">✉</div><div><h4>Email</h4><p>shadrackwambui@gmail.com</p></div></div>
+        <div class="contact-item"><div class="contact-icon">📍</div><div><h4>Headquarters</h4><p>Bruce House, Standard Street, 4th Floor, Suite 416 & South Wing
+P.O. Box 24145-00100, Nairobi, Kenya</p></div></div>
+        <div class="contact-item"><div class="contact-icon">📞</div><div><h4>Direct Telephone</h4><p>Tel: +254 (0) 700 260 086
+Tel: +254 (0) 784 260 086</p></div></div>
+      </div>
+      <form class="form" onsubmit="event.preventDefault();alert('Thank you — we will be in touch.');">
+        <h3>Submit a Consultation Intake Request</h3>
+        <input placeholder="Full Name" required />
+        <input type="email" placeholder="Email Address" required />
+        <input placeholder="Subject" />
+        <textarea rows="5" placeholder="Briefly describe your matter"></textarea>
+        <button class="btn btn-gold" type="submit">SEND MESSAGE</button>
+      </form>
+    </div>
+    <div class="map">
+      <iframe title="Bruce House, Nairobi" src="https://www.google.com/maps?q=Bruce+House,+Standard+Street,+Nairobi&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container row">
+    <div>
+      <p>© 2026 Wambui Shadrack & Associates Advocates. All Rights Reserved.</p>
+      <p style="font-size:.75rem;margin-top:.25rem">Regulated by the Law Society of Kenya.</p>
+    </div>
+    <div class="social">
+      <a href="#" aria-label="Facebook">f</a>
+      <a href="#" aria-label="Twitter">𝕏</a>
+      <a href="#" aria-label="LinkedIn">in</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

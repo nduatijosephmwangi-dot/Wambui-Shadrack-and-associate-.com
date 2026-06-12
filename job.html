@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wambui Shadrack & Associates | Secure Portal</title>
+    <style>
+        /* --- BRANDING & STYLES --- */
+        :root {
+            --bg-dark: #5c6275;
+            --panel-grey: #474e60;
+            --accent-yellow: #ffae00;
+            --text-white: #ffffff;
+            --danger: #ff4444;
+            --success: #00ff88;
+            --info: #00ccff;
+        }
+
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: var(--bg-dark); color: white; height: 100vh; overflow-y: auto; }
+        
+        header { background: #eebb00; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.4); position: sticky; top: 0; z-index: 100; }
+        .logo h1 { margin: 0; color: #222; font-weight: 900; font-size: 1.2rem; text-transform: uppercase; }
+        .badge { background: #333; color: var(--success); padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: bold; border: 1px solid var(--success); }
+        .badge.locked { color: var(--danger); border-color: var(--danger); animation: pulse 1s infinite; }
+
+        .viewport { min-height: 80vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .card { background: rgba(71, 78, 96, 0.95); width: 450px; border-radius: 8px; padding: 3px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+        .card-inner { border: 2px solid var(--accent-yellow); border-radius: 6px; padding: 40px 30px; text-align: center; }
+        
+        input, select { width: 100%; padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid #999; color: white; margin-bottom: 15px; border-radius: 4px; box-sizing: border-box; }
+        input[type="file"] { padding: 9px; background: rgba(0,0,0,0.4); }
+        input:disabled, select:disabled { background: #444; color: #999; cursor: not-allowed; border-color: #555; }
+        button { width: 100%; padding: 14px; background: var(--accent-yellow); border: none; font-weight: bold; cursor: pointer; border-radius: 4px; color: #222; transition: 0.3s; }
+        button:hover { background: #ffcc33; }
+
+        .dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; width: 100%; }
+        .module { background: #3c4455; padding: 20px; border-radius: 8px; border-left: 4px solid var(--accent-yellow); box-sizing: border-box; margin-bottom: 15px; }
+        
+        .kill-switch { background: #3d1a1a; border: 2px solid var(--danger); display: flex; justify-content: space-between; align-items: center; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+        .kill-btn { background: var(--danger); color: white; width: auto; padding: 10px 25px; }
+
+        .hidden { display: none !important; }
+        h2, h3 { color: var(--accent-yellow); margin-top: 0; }
+        .stat-row { display: flex; justify-content: space-between; border-bottom: 1px solid #555; padding: 8px 0; }
+        .console-box { background:#1e1e1e; padding:15px; border-radius:4px; font-family:monospace; color:var(--success); font-size:0.85rem; overflow-y:auto; max-height:200px; margin-top:10px; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>Wambui Shadrack & Associates</h1>
+            <span style="font-size:0.8rem; color:#444;">Advocates & Legal Consultants</span>
+        </div>
+        <div id="sys-status" class="badge">● CLOUD ONLINE</div>
+    </header>
+
+    <!-- LOGIN PORTAL -->
+    <div id="view-login" class="viewport">
+        <div class="card">
+            <div class="card-inner">
+                <h2>Secure Access Gateway</h2>
+                <p style="color:#ccc; font-size:0.9rem;">Clients: Case Number | Staff: Phone Number</p>
+                <input type="text" id="login-input" placeholder="Enter Case Ref or Phone Line">
+                <button onclick="handleLogin()">VERIFY ACCESS SIGNATURE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- OTP PORTAL -->
+    <div id="view-otp" class="viewport hidden">
+        <div class="card">
+            <div class="card-inner">
+                <h3>Identity Verification</h3>
+                <p>Enter the verification code sent to your mobile handset line.</p>
+                <input type="text" id="otp-input" placeholder="6-Digit Code">
+                <button onclick="verifyOtp()">CONFIRM IDENTITY</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CLIENT DASHBOARD -->
+    <div id="view-client" class="viewport hidden" style="display:block; padding-top:40px;">
+        <div class="dash-grid">
+            <div class="module">
+                <h3>⚖️ Matter Status</h3>
+                <h1 id="c-number" style="color:white; margin:10px 0;">-</h1>
+                <p>Next Date: <strong id="c-date" style="font-size:1.2rem; color:var(--accent-yellow)">-</strong></p>
+                <p>Reason: <span id="c-reason">-</span></p>
+            </div>
+
+            <div class="module" style="border-left-color: var(--info);">
+                <h3>📤 Secure Document Upload</h3>
+                <p style="font-size:0.85rem; color:#ccc; margin-bottom:15px;">Send files directly into our resilient cloud without an email client.</p>
+                <input type="email" id="client-email-upload" placeholder="Your Email Address (Required)">
+                <input type="file" id="client-doc-upload">
+                <button style="background:var(--info); color:white;" onclick="uploadClientDoc()">UPLOAD TO SYSTEM</button>
+            </div>
+
+            <div class="module">
+                <h3>💰 Financial Overview</h3>
+                <div class="stat-row"><span>Total Billed:</span> <span id="f-total">-</span></div>
+                <div class="stat-row"><span>Amount Paid:</span> <span id="f-paid">-</span></div>
+                <div class="stat-row" style="color:var(--danger); font-weight:bold;">
+                    <span>Outstanding Balance:</span> <span id="f-bal">-</span>
+                </div>
+            </div>
+
+            <div class="module">
+                <h3>🤖 Legal AI Assistant</h3>
+                <p>Consult Constitution of Kenya 2010</p>
+                
+                <div id="ai-locked">
+                    <div style="background:#222; padding:15px; border-radius:4px; text-align:left;">
+                        <p style="color:var(--danger); text-align:center; font-weight:bold; margin-top:0;">🔒 AI CONFIGURATION LOCKED</p>
+                        <p style="font-size:0.85rem; color:#ccc; text-align:center;">Activate Premium Consultant AI tracking metrics for KES 5,000.</p>
+                        
+                        <label style="font-size:0.8rem; color:#ccc;">Payment Method:</label>
+                        <select id="pay-method" onchange="togglePhoneField()">
+                            <option value="mpesa">M-Pesa (Direct Push)</option>
+                            <option value="card">Credit / Debit Card</option>
+                        </select>
+
+                        <div id="mpesa-phone-block">
+                            <label style="font-size:0.8rem; color:#ccc;">M-Pesa Mobile Number:</label>
+                            <input type="text" id="pay-phone" placeholder="e.g. 0711223344">
+                        </div>
+
+                        <label style="font-size:0.8rem; color:#ccc;">Payment Amount (KES):</label>
+                        <input type="number" id="pay-amount" value="5000">
+                        
+                        <button onclick="triggerBillingTransaction()">PROCEED WITH PAYMENT</button>
+                    </div>
+                </div>
+
+                <div id="ai-unlocked" class="hidden">
+                    <input type="text" placeholder="Ask a legal question..." id="ai-query">
+                    <button onclick="askClientAI()">ASK AI ENGINE</button>
+                    <p id="ai-response-box" style="margin-top:10px; font-size:0.9rem; color:#ddd; white-space:pre-line;"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAFF DASHBOARD -->
+    <div id="view-staff" class="viewport hidden" style="align-items: flex-start; padding-top: 40px;">
+        <div style="width: 100%; max-width: 1200px;">
+            
+            <div id="admin-panel" class="kill-switch hidden">
+                <div>
+                    <strong style="color:var(--danger); font-size:1.2rem;">⚠️ CYBER THREAT OVERRIDE PROTOCOL</strong>
+                    <div style="color:#ccc; font-size:0.8rem;">Emergency Isolation: Instantly cuts off client application sync tunnels.</div>
+                </div>
+                <button class="kill-btn" onclick="toggleLockdown('LOCK')">ACTIVATE KILL SWITCH</button>
+            </div>
+
+            <div class="dash-grid">
+                <div class="module">
+                    <h3>📂 Operations Hub</h3>
+                    <button onclick="showModal('modal-add')" style="margin-bottom:10px;">+ NEW MATTER REGISTRATION</button>
+                    <button onclick="showModal('modal-search')">🔍 SYSTEM SEARCH ENGINE</button>
+                </div>
+
+                <div class="module">
+                    <h3>🤖 Staff Legal Research AI</h3>
+                    <input type="text" id="staff-ai-query" placeholder="Query Constitution & Case Law...">
+                    <button onclick="askStaffAI()">RUN AI SEARCH</button>
+                    <div id="staff-ai-response" class="console-box hidden"></div>
+                </div>
+
+                <div class="module">
+                    <h3>📊 System Telemetry & Logs</h3>
+                    <button onclick="loadMetrics()" style="margin-bottom:10px; background:#444; color:white;">SERVER METRICS</button>
+                    <button onclick="showModal('modal-ai-logs')" style="background:var(--info); color:white;">CLIENT AI QUERIES</button>
+                    <div id="metrics-display" class="console-box hidden"></div>
+                </div>
+            </div>
+
+            <div id="staff-workspace" style="margin-top:20px;"></div>
+        </div>
+    </div>
+
+    <script>
+        const API = "http://localhost:5000/api";
+        let CURRENT_PHONE = "";
+        let CURRENT_USER_NAME = ""; 
+        let CURRENT_USER_ROLE = "";
+
+        // --- GLOBAL ERROR HANDLER FOR RATE LIMITING (DDoS Protection) ---
+        function handleRateLimit(status) {
+            if (status === 429) {
+                alert("⚠️ SYSTEM ALERT: Rate limit exceeded to prevent portal slowdowns. Please wait a moment and try again.");
+                return true;
+            }
+            return false;
+        }
+
+        // --- TIMELINE CONTROLS ---
+        function togglePhoneField() {
+            const method = document.getElementById('pay-method').value;
+            document.getElementById('mpesa-phone-block').classList.toggle('hidden', method === 'card');
+        }
+
+        // --- AUTHENTICATION LAYER ---
+        async function handleLogin() {
+            const val = document.getElementById('login-input').value.trim();
+            const res = await fetch(`${API}/auth/login-router`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ credential: val })
+            });
+            
+            if (handleRateLimit(res.status)) return;
+
+            const data = await res.json();
+
+            if (res.status === 503) { 
+                alert(data.message);
+                document.body.innerHTML = `<h1 style="color:red;text-align:center;margin-top:20%">${data.message}</h1>`;
+                return;
+            }
+
+            if (data.mode === 'otp_required') {
+                CURRENT_PHONE = val;
+                switchView('view-otp');
+            } else if (data.success && data.data) {
+                // Modified to handle the new backend JSON structure properly
+                loadClientDash(data.data);
+            } else {
+                alert(data.message || "Invalid Credentials");
+            }
+        }
+
+        async function verifyOtp() {
+            const code = document.getElementById('otp-input').value;
+            const res = await fetch(`${API}/auth/verify-otp`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ phone: CURRENT_PHONE, code: code })
+            });
+
+            if (handleRateLimit(res.status)) return;
+
+            const data = await res.json();
+            
+            if (data.success) {
+                CURRENT_USER_NAME = data.user_name; 
+                CURRENT_USER_ROLE = data.role;
+                switchView('view-staff');
+                
+                if (data.role === 'admin') {
+                    document.getElementById('admin-panel').classList.remove('hidden');
+                }
+                
+                showModal('modal-search'); 
+            } else {
+                alert("Invalid Verification Token Signature.");
+            }
+        }
+
+        // --- CLIENT GATEWAY ---
+        function loadClientDash(data) {
+            switchView('view-client');
+            document.getElementById('c-number').innerText = data.case_number;
+            document.getElementById('c-date').innerText = data.next_court_date || "Not set";
+            document.getElementById('c-reason').innerText = data.coming_up_for || "Not set";
+            
+            // Safety check for financials mapping
+            if(data.financials) {
+                document.getElementById('f-total').innerText = "KES " + data.financials.total.toLocaleString();
+                document.getElementById('f-paid').innerText = "KES " + data.financials.paid.toLocaleString();
+                document.getElementById('f-bal').innerText = "KES " + data.financials.balance.toLocaleString();
+            }
+
+            if (data.ai_unlocked) {
+                document.getElementById('ai-locked').classList.add('hidden');
+                document.getElementById('ai-unlocked').classList.remove('hidden');
+            }
+        }
+
+        async function uploadClientDoc() {
+            const email = document.getElementById('client-email-upload').value;
+            const caseNo = document.getElementById('c-number').innerText;
+            const fileInput = document.getElementById('client-doc-upload');
+            
+            if (!email || fileInput.files.length === 0) {
+                alert("Please provide both your email and select a document.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('client_email', email);
+            formData.append('case_number', caseNo);
+            formData.append('document', fileInput.files[0]);
+
+            const res = await fetch(`${API}/documents/client-upload`, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (handleRateLimit(res.status)) return;
+
+            const data = await res.json();
+            alert(data.message);
+            if (data.success) fileInput.value = ""; // clear input
+        }
+
+        async function askClientAI() {
+            const q = document.getElementById('ai-query').value;
+            const acc = document.getElementById('c-number').innerText;
+            const res = await fetch(`${API}/ai/consult`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ question: q, case_number: acc })
+            });
+
+            if (handleRateLimit(res.status)) return;
+
+            const data = await res.json();
+            if (data.success) {
+                document.getElementById('ai-response-box').innerText = data.answer;
+            } else {
+                alert(data.message);
+            }
+        }
+
+        // --- STAFF MANAGEMENT & AI ---
+        async function askStaffAI() {
+            const q = document.getElementById('staff-ai-query').value;
+            const res = await fetch(`${API}/ai/consult`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ question: q, user_name: CURRENT_USER_NAME })
+            });
+            
+            if (handleRateLimit(res.status)) return;
+            
+            const data = await res.json();
+            const box = document.getElementById('staff-ai-response');
+            box.classList.remove('hidden');
+            if (data.success) {
+                box.innerText = `[${data.engine}]\n> ${data.answer}`;
+            } else {
+                box.innerText = "Error: " + data.message;
+            }
+        }
+
+        async function loadMetrics() {
+            const res = await fetch(`${API}/system/metrics`);
+            if (handleRateLimit(res.status)) return;
+            const data = await res.json();
+            
+            const box = document.getElementById('metrics-display');
+            box.classList.remove('hidden');
+            if (data.success) {
+                box.innerHTML = `
+                    Cloud Status: ${data.cloud_status}<br>
+                    Total Requests: ${data.live_metrics.total_requests}<br>
+                    Blocked Logins: ${data.live_metrics.failed_logins}<br>
+                    AI Queries Handled: ${data.live_metrics.ai_queries_processed}
+                `;
+            }
+        }
+
+        function showModal(type) {
+            const ws = document.getElementById('staff-workspace');
+            if (type === 'modal-search') {
+                ws.innerHTML = `
+                    <div class="module">
+                        <h3>Search Registry Records</h3>
+                        <input type="text" id="s-query" placeholder="Search by Client Name or Case Ref Number">
+                        <button onclick="doSearch()">RUN SEARCH INDEX</button>
+                        <div id="s-results" style="margin-top:15px;"></div>
+                    </div>`;
+                doSearch(); 
+            } else if (type === 'modal-add') {
+                // Only Wambui Shadrack can see financial input boxes here
+                const showFinance = CURRENT_USER_NAME === "Wambui Shadrack" ? "block" : "none";
+                ws.innerHTML = `
+                    <div class="module">
+                        <h3>Open New Client Legal Matter Ledger</h3>
+                        <input id="n-case" placeholder="Unique Court Case Number Reference (Required)">
+                        <input id="n-name" placeholder="Client Full Name">
+                        
+                        <div style="display:${showFinance}">
+                            <input id="n-total" type="number" placeholder="Total Agreed Fees (KES)">
+                            <input id="n-paid" type="number" placeholder="Initial Amount Paid (KES)">
+                        </div>
+                        
+                        <button onclick="addCase()">INITIALIZE MATTER</button>
+                    </div>`;
+            } else if (type === 'modal-ai-logs') {
+                ws.innerHTML = `
+                    <div class="module" style="border-left-color: var(--info);">
+                        <h3>Client AI Interrogation Logs</h3>
+                        <button onclick="fetchAILogs()">REFRESH LOGS</button>
+                        <div id="ai-log-results" style="margin-top:15px;"></div>
+                    </div>`;
+                fetchAILogs();
+            }
+        }
+
+        async function addCase() {
+            const caseNo = document.getElementById('n-case').value;
+            const name = document.getElementById('n-name').value;
+            const total = document.getElementById('n-total') ? document.getElementById('n-total').value : 0;
+            const paid = document.getElementById('n-paid') ? document.getElementById('n-paid').value : 0;
+
+            if(!caseNo) { alert("Case number is required."); return; }
+
+            const res = await fetch(`${API}/staff/add-matter`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    user_name: CURRENT_USER_NAME,
+                    case_number: caseNo,
+                    client_name: name,
+                    total_balance: total,
+                    paid_balance: paid
+                })
+            });
+            const data = await res.json();
+            alert(data.message);
+            if(data.success) showModal('modal-search');
+        }
+
+        async function doSearch() {
+            const q = document.getElementById('s-query').value;
+            const res = await fetch(`${API}/staff/search`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ query: q, user_name: CURRENT_USER_NAME })
+            });
+            const data = await res.json();
+            
+            const html = data.results.map(r => {
+                const totalColor = r.total_balance === 'RESTRICTED' ? 'var(--danger)' : 'white';
+                return `
+                <div style="background:#222; padding:15px; margin-bottom:10px; border-radius:4px; border:1px solid #444;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                        <strong style="color:var(--accent-yellow); font-size:1.1rem;">${r.case_number}</strong>
+                        <span>Client: <b>${r.client_name || 'Unassigned'}</b></span>
+                    </div>
+                    <div style="font-size:0.85rem; color:#bbb; line-height:1.4;">
+                        Parties: ${r.case_parties || 'N/A'}<br>
+                        Timeline Date: ${r.next_court_date || 'None Set'} | Context: ${r.coming_up_for || 'None Given'}<br>
+                        Financial Ledger Total: <span style="color:${totalColor}; font-weight:bold;">${r.total_balance}</span> | Paid Balance: <span style="color:var(--success); font-weight:bold;">${r.paid_balance}</span>
+                    </div>
+                    <button style="width:auto; margin-top:10px; padding:6px 15px; font-size:0.8rem;" onclick='openInlineEditor(${JSON.stringify(r).replace(/'/g, "&apos;")})'>MANAGE / UPDATE / DISPATCH FILE</button>
+                </div>
+            `}).join('');
+            document.getElementById('s-results').innerHTML = html || "<p style='color:#ccc;'>No files mapped inside active framework query parameters.</p>";
+        }
+
+        function openInlineEditor(row) {
+            const ws = document.getElementById('staff-workspace');
+            const isRestricted = row.total_balance === "RESTRICTED";
+            
+            ws.innerHTML = `
+                <div class="module" style="border-left-color: var(--success);">
+                    <h3>✏️ Modify Record & Dispatch: ${row.case_number}</h3>
+                    <input type="hidden" id="edit-id" value="${row.case_id}">
+                    
+                    <label style="font-size:0.8rem; color:#ccc;">Next Court Scheduled Date:</label>
+                    <input id="edit-date" value="${row.next_court_date || ''}" placeholder="e.g. 12th July 2026">
+                    
+                    <label style="font-size:0.8rem; color:#ccc;">Coming Up For (Pleading Phase):</label>
+                    <input id="edit-reason" value="${row.coming_up_for || ''}" placeholder="e.g. Mention for directions">
+                    
+                    <label style="font-size:0.8rem; color:#ccc;">Total System Fee Statement Balance:</label>
+                    <input id="edit-total" value="${row.total_balance}" ${isRestricted ? 'disabled' : ''}>
+                    
+                    <label style="font-size:0.8rem; color:#ccc;">Ledger Retainer Paid Balance Statement:</label>
+                    <input id="edit-paid" value="${row.paid_balance}" ${isRestricted ? 'disabled' : ''}>
+                    
+                    <button onclick="commitDatabaseRevisions()">SAVE MODIFICATION ENTRIES</button>
+
+                    <hr style="border-color:#555; margin: 20px 0;">
+                    
+                    <h4 style="color:var(--info); margin-top:0;">📤 Dispatch File to Client Protocol</h4>
+                    <input type="file" id="staff-doc-upload">
+                    <button style="background:var(--info); color:white;" onclick="uploadStaffDoc('${row.case_number}')">UPLOAD FILE TO CLIENT</button>
+                    
+                    <button onclick="showModal('modal-search')" style="background:#555; color:white; margin-top:15px;">ABORT ALTERATION</button>
+                </div>`;
+        }
+
+        async function commitDatabaseRevisions() {
+            const id = document.getElementById('edit-id').value;
+            const date = document.getElementById('edit-date').value;
+            const reason = document.getElementById('edit-reason').value;
+            const total = document.getElementById('edit-total').value;
+            const paid = document.getElementById('edit-paid').value;
+
+            const res = await fetch(`${API}/staff/update-matter`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    user_name: CURRENT_USER_NAME,
+                    case_id: id,
+                    next_court_date: date,
+                    coming_up_for: reason,
+                    total_balance: total === 'RESTRICTED' ? null : total,
+                    paid_balance: paid === 'RESTRICTED' ? null : paid
+                })
+            });
+            const data = await res.json();
+            alert(data.message);
+            if (data.success) { showModal('modal-search'); }
+        }
+
+        async function uploadStaffDoc(caseNo) {
+            const fileInput = document.getElementById('staff-doc-upload');
+            if (fileInput.files.length === 0) {
+                alert("Select a file to upload."); return;
+            }
+
+            const formData = new FormData();
+            formData.append('case_number', caseNo);
+            formData.append('document', fileInput.files[0]);
+
+            const res = await fetch(`${API}/documents/staff-upload`, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (handleRateLimit(res.status)) return;
+
+            const data = await res.json();
+            alert(data.message);
+            if (data.success) fileInput.value = "";
+        }
+
+        async function fetchAILogs() {
+            try {
+                const res = await fetch(`${API}/staff/ai-monitoring`);
+                if (handleRateLimit(res.status)) return;
+                const data = await res.json();
+                
+                const html = data.logs.map(log => `
+                    <div style="background:#222; padding:10px; margin-bottom:10px; border-left: 3px solid var(--info);">
+                        <small style="color:var(--accent-yellow);">${log.case_number}</small><br>
+                        <strong>Client Asked:</strong> <span style="color:#ddd;">"${log.client_question}"</span>
+                    </div>
+                `).join('');
+                document.getElementById('ai-log-results').innerHTML = html || "<p>No AI queries logged.</p>";
+            } catch (e) {
+                document.getElementById('ai-log-results').innerHTML = "<p>Monitoring module unavailable or disconnected.</p>";
+            }
+        }
+
+        async function toggleLockdown(action) {
+            const res = await fetch(`${API}/admin/kill-switch`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ action: action })
+            });
+            const data = await res.json();
+            alert(data.message);
+            location.reload();
+        }
+
+        // --- RUNTIME VIEW SWITCH ROUTER ---
+        function switchView(id) {
+            document.querySelectorAll('.viewport').forEach(el => el.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+            if (id !== 'view-login') document.getElementById('view-login').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
